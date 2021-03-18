@@ -3,30 +3,38 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     value: null,
+  //   };
+  // }
     render() {
       return (
         <button 
         className="square" 
-        onClick={() => 
-          this.setState({value: 'X'})
+        onClick={() => this.props.onClick({value: 'X'})
         }>
           {/* Passing props is how information flows in React apps, from parents to children. */}
           {/* This next line passes a prop from the Board component to this Square component. */}
-          {this.state.value}
+          {this.props.value}
         </button>
       );
     }
   }
   
   class Board extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        squares: Array(9).fill(null),
+      };
+    }
     renderSquare(i) {
-      return <Square value={i} />;
+      return <Square
+      value={this.state.squares[i]}
+      onClick={() => this.handleClick(i)}
+      />
     }
   
     render() {
