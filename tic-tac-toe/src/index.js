@@ -6,6 +6,8 @@ class Square extends React.Component {
     render() {
       return (
         <button className="square">
+          {/* Passing props is how information flows in React apps, from parents to children. */}
+          {/* This next line passes a prop from the Board component to this Square component. */}
           {this.props.value}
         </button>
       );
